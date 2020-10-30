@@ -6,7 +6,7 @@ import {
 } from '../../utils/markets';
 import DataTable from '../layout/DataTable';
 import { useSendConnection } from '../../utils/connection';
-import { useWallet } from '../../utils/wallet';
+import { useSolong } from '../../utils/solong-helper';
 import { settleFunds } from '../../utils/send';
 import { notify } from '../../utils/notifications';
 
@@ -18,7 +18,7 @@ export default function BalancesTable({
 }) {
   const [accounts] = useTokenAccounts();
   const connection = useSendConnection();
-  const { wallet } = useWallet();
+  const { wallet } = useSolong();
 
   async function onSettleFunds(market, openOrders) {
     try {

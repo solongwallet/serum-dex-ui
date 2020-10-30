@@ -8,7 +8,7 @@ import { useAccountInfo, useConnection } from '../utils/connection';
 import FloatingElement from '../components/layout/FloatingElement';
 import styled from 'styled-components';
 import { parseTokenMintData } from '../utils/tokens';
-import { useWallet } from '../utils/wallet';
+import { useSolong } from '../utils/solong-helper';
 import { listMarket } from '../utils/send';
 import Link from '../components/Link';
 
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 
 export default function ListNewMarketPage() {
   const connection = useConnection();
-  const { wallet, connected } = useWallet();
+  const { wallet, connected } = useSolong();
   const [baseMintInput, baseMintInfo] = useMintInput(
     'baseMint',
     <Text>

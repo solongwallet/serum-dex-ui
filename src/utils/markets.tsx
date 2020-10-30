@@ -17,7 +17,7 @@ import {
 } from './utils';
 import { refreshCache, useAsyncData } from './fetch-loop';
 import { useAccountData, useAccountInfo, useConnection } from './connection';
-import { useWallet } from './wallet';
+import { useSolong} from './solong-helper';
 import tuple from 'immutable-tuple';
 import { notify } from './notifications';
 import { BN } from 'bn.js';
@@ -99,7 +99,7 @@ export function useAllMarkets(customMarkets) {
 
 export function useUnmigratedOpenOrdersAccounts() {
   const connection = useConnection();
-  const { wallet } = useWallet();
+  const { wallet } = useSolong();
 
   async function getUnmigratedOpenOrdersAccounts(): Promise<OpenOrders[]> {
     if (!wallet || !connection || !wallet.publicKey) {
@@ -406,7 +406,7 @@ export function useOrderbook(
 // TODO: Update to use websocket
 export function useOpenOrdersAccounts(fast = false) {
   const { market } = useMarket();
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
   const connection = useConnection();
   async function getOpenOrdersAccounts() {
     if (!connected) {
@@ -439,7 +439,7 @@ export function useTokenAccounts(): [
   TokenAccount[] | null | undefined,
   boolean,
 ] {
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
   const connection = useConnection();
   async function getTokenAccounts() {
     if (!connected) {
@@ -569,7 +569,7 @@ export function useFeeDiscountKeys(): [
   boolean,
 ] {
   const { market } = useMarket();
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
   const connection = useConnection();
   async function getFeeDiscountKeys() {
     if (!connected) {
@@ -608,7 +608,7 @@ export function useFills(limit = 100) {
 
 // TODO: Update to use websocket
 export function useFillsForAllMarkets(limit = 100) {
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
 
   const connection = useConnection();
   // todo: add custom markets
@@ -665,7 +665,7 @@ export function useFillsForAllMarkets(limit = 100) {
 }
 
 export function useAllOpenOrdersAccounts() {
-  const { wallet, connected } = useWallet();
+  const { wallet, connected } = useSolong();
   const connection = useConnection();
   const { customMarkets } = useMarket();
   const marketInfos = getMarketInfos(customMarkets);
@@ -767,7 +767,7 @@ export function useAllOpenOrders(): {
   refreshOpenOrders: () => void;
 } {
   const connection = useConnection();
-  const { connected } = useWallet();
+  const { connected } = useSolong();
   const [
     openOrdersAccounts,
     openOrdersAccountsConnected,
@@ -884,7 +884,7 @@ export function useWalletBalancesForAllMarkets(): {
   balance: number;
 }[] {
   const [tokenAccounts] = useTokenAccounts();
-  const { connected } = useWallet();
+  const { connected } = useSolong();
   const [mintInfos, mintInfosConnected] = useMintInfos();
 
   if (!connected || !mintInfosConnected) {
@@ -991,7 +991,7 @@ export function useGetOpenOrdersForDeprecatedMarkets(): {
   loaded: boolean;
   refreshOpenOrders: () => void;
 } {
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
   const [customMarkets] = useLocalStorageState<CustomMarketInfo[]>(
     'customMarkets',
     [],

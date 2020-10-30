@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useLocalStorageState } from './utils';
 import { useInterval } from './useInterval';
 import { useConnection } from './connection';
-import { useWallet } from './wallet';
+import { useSolong} from './solong-helper';
 import {
   useAllMarkets,
   useTokenAccounts,
@@ -23,7 +23,7 @@ export function PreferencesProvider({ children }) {
   );
 
   const [tokenAccounts] = useTokenAccounts();
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
   const { customMarkets } = useMarket();
   const [marketList] = useAllMarkets(customMarkets);
   const connection = useConnection();

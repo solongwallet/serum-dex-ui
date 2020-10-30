@@ -4,7 +4,7 @@ import DataTable from '../layout/DataTable';
 import styled from 'styled-components';
 import { Button, Col, Row, Tag } from 'antd';
 import { cancelOrder } from '../../utils/send';
-import { useWallet } from '../../utils/wallet';
+import { useSolong} from '../../utils/solong-helper';
 import { useSendConnection } from '../../utils/connection';
 import { notify } from '../../utils/notifications';
 import { DeleteOutlined } from '@ant-design/icons';
@@ -28,7 +28,7 @@ export default function OpenOrderTable({
   loading?: boolean;
   marketFilter?: boolean;
 }) {
-  let { wallet } = useWallet();
+  let { wallet } = useSolong();
   let connection = useSendConnection();
 
   const [cancelId, setCancelId] = useState(null);

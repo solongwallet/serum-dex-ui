@@ -4,7 +4,7 @@ import { Button, Row } from 'antd';
 import { settleAllFunds } from '../../utils/send';
 import { notify } from '../../utils/notifications';
 import { useConnection } from '../../utils/connection';
-import { useWallet } from '../../utils/wallet';
+import { useSolong} from '../../utils/solong-helper';
 import {
   useAllMarkets,
   useMarket,
@@ -25,7 +25,7 @@ export default function WalletBalancesTable({
   }[];
 }) {
   const connection = useConnection();
-  const { wallet, connected } = useWallet();
+  const { wallet, connected } = useSolong();
   const [selectedTokenAccounts] = useSelectedTokenAccounts();
   const [tokenAccounts, tokenAccountsConnected] = useTokenAccounts();
   const { customMarkets } = useMarket();

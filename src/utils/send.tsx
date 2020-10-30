@@ -641,7 +641,9 @@ async function signTransaction({
   if (signers.length > 0) {
     transaction.partialSign(...signers);
   }
-  return await wallet.signTransaction(transaction);
+  return await wallet.signTransaction(transaction).catch(()=>{
+    throw {message:"Reject sign request!"}
+  });
 }
 
 async function sendSignedTransaction({

@@ -13,7 +13,7 @@ import {
   useTokenAccounts,
 } from '../utils/markets';
 import { notify } from '../utils/notifications';
-import { useWallet } from '../utils/wallet';
+import { useSolong} from '../utils/solong-helper';
 import { useConnection, useSendConnection } from '../utils/connection';
 import { placeOrder } from '../utils/send';
 import { floorToDecimal, getDecimalCount } from '../utils/utils';
@@ -38,7 +38,7 @@ const ConvertButton = styled(Button)`
 `;
 
 export default function ConvertForm() {
-  const { connected, wallet } = useWallet();
+  const { connected, wallet } = useSolong();
   const { customMarkets } = useMarket();
   const marketInfos = getMarketInfos(customMarkets);
   const { market, setMarketAddress } = useMarket();

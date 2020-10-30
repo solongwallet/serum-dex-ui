@@ -5,13 +5,13 @@ import {
   useMarket,
   useSelectedQuoteCurrencyAccount,
 } from '../utils/markets';
-import { useWallet } from '../utils/wallet';
+import { useSolong } from '../utils/solong-helper';
 import Link from './Link';
 
 export default function DepositDialog({ onClose, baseOrQuote }) {
   const { market, baseCurrency, quoteCurrency } = useMarket();
 
-  const { providerName, providerUrl } = useWallet();
+  const { providerName, providerUrl } = useSolong();
   const baseCurrencyAccount = useSelectedBaseCurrencyAccount();
   const quoteCurrencyAccount = useSelectedQuoteCurrencyAccount();
   let coinMint;

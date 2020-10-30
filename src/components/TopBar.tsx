@@ -9,6 +9,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import styled from 'styled-components';
 import { useWallet, WALLET_PROVIDERS } from '../utils/wallet';
+import { useSolong } from '../utils/solong-helper';
 import { ENDPOINTS, useConnectionConfig } from '../utils/connection';
 import Settings from './Settings';
 import CustomClusterEndpointDialog from './CustomClusterEndpointDialog';
@@ -53,7 +54,8 @@ const EXTERNAL_LINKS = {
 };
 
 export default function TopBar() {
-  const { connected, wallet, providerUrl, setProvider } = useWallet();
+  const { providerUrl, setProvider } = useWallet();
+  const { connected, wallet} = useSolong();
   const {
     endpoint,
     endpointInfo,
@@ -273,7 +275,7 @@ export default function TopBar() {
             </Col>
           </Row>
         </div>
-        {connected && (
+        {/* {connected && (
           <div>
             <Popover
               content={<Settings autoApprove={wallet?.autoApprove} />}
@@ -287,16 +289,7 @@ export default function TopBar() {
               </Button>
             </Popover>
           </div>
-        )}
-        <div>
-          <Select onSelect={setProvider} value={providerUrl} style={{ marginRight: 8 }}>
-            {WALLET_PROVIDERS.map(({ name, url }) => (
-              <Select.Option value={url} key={url}>
-                {name}
-              </Select.Option>
-            ))}
-          </Select>
-        </div>
+        )} */}
         <div>
           <Select onSelect={selectLang} value={locale}>
             {LAUGUANGES_PROVIDERS.map(({ loc, label }) => (

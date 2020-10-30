@@ -10,7 +10,7 @@ import {
   useSelectedBaseCurrencyAccount,
   useSelectedQuoteCurrencyAccount,
 } from '../utils/markets';
-import { useWallet } from '../utils/wallet';
+import { useSolong} from '../utils/solong-helper';
 import { notify } from '../utils/notifications';
 import {
   getDecimalCount,
@@ -60,7 +60,7 @@ export default function TradeForm({
   const baseCurrencyAccount = useSelectedBaseCurrencyAccount();
   const quoteCurrencyAccount = useSelectedQuoteCurrencyAccount();
   const openOrdersAccount = useSelectedOpenOrdersAccount(true);
-  const { wallet } = useWallet();
+  const { wallet } = useSolong();
   const sendConnection = useSendConnection();
   const markPrice = useMarkPrice();
 
@@ -232,6 +232,7 @@ export default function TradeForm({
         type: 'error',
       });
     } finally {
+      setPrice(undefined);
       setSubmitting(false);
     }
   }
